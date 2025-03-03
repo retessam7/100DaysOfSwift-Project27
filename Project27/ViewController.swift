@@ -28,6 +28,10 @@ class ViewController: UIViewController {
         switch currentDrawType {
         case 0:
             drawRectangle()
+        case 1:
+            drawCircle()
+        case 2:
+            drawRotatedSquares()
         default:
             break
         }
@@ -53,9 +57,53 @@ class ViewController: UIViewController {
         
         imageView.image = img
     }
+    
+    func drawCircle() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            // insetBy() method that lets us push each edge in by a certain amount
+            let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512).insetBy(dx: 5, dy: 5)
+            
+            ctx.cgContext.setFillColor(UIColor.red.cgColor)
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.setLineWidth(10)
+            
+            // done by specifying its rectangular bounds.
+            ctx.cgContext.addEllipse(in: rectangle)
+            ctx.cgContext.drawPath(using: .fillStroke)
+        }
+        imageView.image = img
+    }
+    
+    // current transformation matrix is very similar to those CGAffineTransform modifications In UIKit, you rotate drawing around the center of your view, as if a pin was stuck right through the middle. In Core Graphics, you rotate around the top-left corner, so  that we've effectively moved the rotation point.
+    func drawRotatedSquares() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            ctx.cgContext.translateBy(x: 256, y: 256)
+            
+            let rotations = 16
+            let amount = Double.pi / Double(rotations)
+            
+            for _ in 0 ..< rotations {
+                ctx.cgContext.rotate(by: CGFloat(amount))
+                // we need to draw our rotated squares so they are centered on our center:
+                ctx.cgContext.addRect(CGRect(x: -128, y: -128, width: 256, height: 256))
+            }
+            
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.strokePath()
+        }
+        
+        imageView.image = img
+    }
 }
 
 // Let's take a look at the five new methods you'll need to use to draw our box:
+
+// A different way of drawing rectangles is just to fill them directly with your target color:
+// fill(), which skips the add path / draw path work and just fills the rectangle given as its parameter using whatever the current fill color is
 
 // setFillColor() sets the fill color of our context, which is the color used on the insides of the rectangle we'll draw.
 // setStrokeColor() sets the stroke color of our context, which is the color used on the line around the edge of the rectangle we'll draw.
@@ -63,3 +111,27 @@ class ViewController: UIViewController {
 // addRect() adds a CGRect rectangle to the context's current path to be drawn.
 // drawPath() draws the context's current path using the state you have configured.
 // All five of those are called on the Core Graphics context that comes from ctx.cgContext, using a parameter that does the actual work.
+
+// func drawCheckerboard() {
+// let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+
+// let img = renderer.image { ctx in
+//    ctx.cgContext.setFillColor(UIColor.black.cgColor)
+
+//    for row in 0 ..< 8 {
+//            for col in 0 ..< 8 {
+//            if (row + col) % 2 == 0 {
+//                ctx.cgContext.fill(CGRect(x: col * 64, y: row * 64, width: 64, height: 64))
+//            }
+//        }
+//    }
+//}
+
+//imageView.image = img
+//}
+
+// To make this happen, you need to know three new Core Graphics methods:
+
+// translateBy() translates (moves) the current transformation matrix.
+// rotate(by:) rotates the current transformation matrix.
+// strokePath() strokes the path with your specified line width, which is 1 if you don't set it explicitly.

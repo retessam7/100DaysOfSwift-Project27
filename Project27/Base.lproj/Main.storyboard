@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMM-6D-MEp">
-                                <rect key="frame" x="370" y="1100" width="82" height="35"/>
+                                <rect key="frame" x="369" y="1125" width="82" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Redraw"/>
                                 <connections>
@@ -31,12 +31,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="G9K-qu-VIE"/>
-                            <constraint firstItem="OMM-6D-MEp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="1076" id="LMb-aY-Tfg"/>
-                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="itc-Ca-zcE"/>
-                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lZs-9w-hWV"/>
-                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-24" id="ldG-ys-W2y"/>
-                            <constraint firstItem="OMM-6D-MEp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="370" id="nx8-5h-hh3"/>
+                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="centerX" secondItem="OMM-6D-MEp" secondAttribute="centerX" id="Mi4-bS-aCl"/>
+                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NCd-BJ-bFn"/>
+                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-24" id="VRK-IP-HJz"/>
+                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W0B-an-j5F"/>
+                            <constraint firstItem="OMM-6D-MEp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="lq5-Gg-XNt"/>
+                            <constraint firstItem="ff0-Yo-mNa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mrM-sB-Wpo"/>
                         </constraints>
                     </view>
                     <connections>
